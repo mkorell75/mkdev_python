@@ -18,15 +18,6 @@ WORKDIR = "c:\devworks\PycharmProjects\mkdev"
 os.chdir(WORKDIR)
 
 
-def select_searchword(keys):
-    for key in keys:
-        print(key)
-    searchword = input("Select your keyword")
-    return searchword
-
-def copy_to_clipboard():
-    pass
-
 if len(sys.argv) == 1:
     print(''' My Clipboard Dictionary
         ' Usage: clip add <key> : Copies text currently in the clipboard to our dictionary
@@ -38,8 +29,9 @@ if len(sys.argv) == 1:
 elif len(sys.argv) == 2 and sys.argv[1] == "list":
     with shelve.open('textblocks') as textblocks:
         keys = textblocks.keys()
-        searchword=select_searchword(keys)
-
+        for key in keys:
+            print(key)
+        searchword = input()
         print(searchword)
 
         if searchword in textblocks.keys():
@@ -48,7 +40,6 @@ elif len(sys.argv) == 2 and sys.argv[1] == "list":
             pyperclip.copy(textbody)
         else:
             print("Key not found")
-            searchword = select_searchword(keys)
 
 elif len(sys.argv) >2 and sys.argv[1] == "add":
     with shelve.open('textblocks') as textblocks:
@@ -69,4 +60,3 @@ elif len(sys.argv) == 2 and sys.argv[1] != "list":
             pyperclip.copy(textbody)
         else:
             print("Key not found")
-            searchword = select_searchword(textblocks.keys())
