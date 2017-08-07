@@ -1,0 +1,1 @@
+c:\tools\Python\Python35\python.exe -u C:\devworks\PycharmProjects\mkdev\clip.py %*
